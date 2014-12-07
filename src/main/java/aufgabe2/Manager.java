@@ -1,4 +1,4 @@
-package exercise7;
+package aufgabe2;
 
 import java.io.File;
 
