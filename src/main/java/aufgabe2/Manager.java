@@ -13,7 +13,6 @@ import org.openrdf.query.TupleQuery;
 import org.openrdf.query.TupleQueryResult;
 import org.openrdf.repository.Repository;
 import org.openrdf.repository.RepositoryConnection;
-import org.openrdf.repository.RepositoryException;
 import org.openrdf.repository.http.HTTPRepository;
 
 public class Manager {
@@ -26,12 +25,12 @@ public class Manager {
 	public static final String SKOS = "skos";
 
 	public Repository getAccessToSesame() {
-		Manager.LOG.info("Erzeuge lokales Repository...");
+		Manager.LOG.info("Baue Verbindung zum Sesame-Repo auf...");
 		String sesameServer = "http://dbpedia.org/sparql";
 		Repository repo = new HTTPRepository(sesameServer);
 		try {
 			repo.initialize();
-		} catch (RepositoryException e) {
+		} catch (Exception e) {
 			Manager.LOG.error("Fehler beim Zugriff auf " + sesameServer, e);
 		}
 		return repo;

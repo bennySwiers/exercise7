@@ -8,8 +8,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.log4j.Logger;
 import org.openrdf.repository.Repository;
-import org.openrdf.repository.RepositoryException;
 
 import aufgabe1.Crawler;
 import aufgabe2.Manager;
@@ -19,12 +19,17 @@ import aufgabe2.Manager;
  */
 @SuppressWarnings("serial")
 public class CrawlServlet extends HttpServlet {
+	private static final Logger LOG = Logger.getLogger(CrawlServlet.class);
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		Crawler crawl = new Crawler();
 		String start = "http://en.wikipedia.org/wiki/Data_mining";
+		
+		CrawlServlet.LOG.info("Crawler startet...");
 		ArrayList<String> list = crawl.service(start);
+		CrawlServlet.LOG.info("Crawler ist fertig...");
+		
 		Map<String, Map<String, String>> infoMap = getInfos(list);
 		
 		
@@ -69,7 +74,7 @@ public class CrawlServlet extends HttpServlet {
 				sesameRepo, list);
 		try {
 			sesameRepo.shutDown();
-		} catch (RepositoryException e) {
+		} catch (Exception e) {
 			System.out.println("Fehler bei Shutdown der Repositories. "+ e.getStackTrace());
 		}
 		return map;

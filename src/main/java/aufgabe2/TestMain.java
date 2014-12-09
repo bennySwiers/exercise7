@@ -16,6 +16,7 @@ public class TestMain {
 	private static final Logger LOG = Logger.getLogger(TestMain.class);
 
 	public static void main(String[] args) {
+		TestMain.LOG.info("Start...");
 		Crawler crawl = new Crawler();
 		List<String> list = null;
 		try {
