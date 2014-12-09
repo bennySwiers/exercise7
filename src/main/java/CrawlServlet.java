@@ -3,6 +3,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import aufgabe1.Crawler;
+
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -15,12 +17,8 @@ public class CrawlServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        List<String> test = new ArrayList<String>();
-        test.add("www.heise.de");
-        test.add("www.nba.com");
-        test.add("www.chip.de");
-        test.add("www.bla.de");
-
+		Crawler crawl = new Crawler();
+		ArrayList<String> test = crawl.service("http://mvnrepository.com/artifact/javax.servlet/servlet-api/2.5");
         StringBuilder JSON = new StringBuilder();
 
         JSON.append("{\n");
