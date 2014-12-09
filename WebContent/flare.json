@@ -1,0 +1,29 @@
+{
+    "name":"",
+    "children":[
+        {
+            "name":"cluster www.heise.de",
+            "children":[
+                {"name":"www.heise.de"}
+            ]
+        },
+        {
+            "name":"cluster www.nba.com",
+            "children":[
+                {"name":"www.nba.com"}
+            ]
+        },
+        {
+            "name":"cluster www.chip.de",
+            "children":[
+                {"name":"www.chip.de"}
+            ]
+        },
+        {
+            "name":"cluster www.bla.de",
+            "children":[
+                {"name":"www.bla.de"}
+            ]
+        }
+    ]
+}
