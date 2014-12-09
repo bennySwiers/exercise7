@@ -45,7 +45,7 @@ public class Crawler {
 			for (URL l : links) {
 				if ((!indexed.contains(l.toURI().toString())) && l != null
 						&& (!l.toURI().toString().contains("?"))
-						&& (!l.toURI().toString().contains("#")) && i < 150) {
+						&& (!l.toURI().toString().contains("#")) && i < 10) {
 					i = i + 1;
 					indexDocs(l.toURI().toString());
 				}

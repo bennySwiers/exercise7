@@ -18,11 +18,12 @@ public class CrawlServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		Crawler crawl = new Crawler();
-		ArrayList<String> test = crawl.service("http://en.wikipedia.org/wiki/Data_mining");
+		String start = "http://en.wikipedia.org/wiki/Data_mining";
+		ArrayList<String> test = crawl.service(start);
         StringBuilder JSON = new StringBuilder();
 
         JSON.append("{\n");
-        JSON.append("\"name\":\"\",\n");
+        JSON.append("\"name\":\"" + start + "\",\n");
         JSON.append("\"children\":[\n");
 
         for(String s : test){
