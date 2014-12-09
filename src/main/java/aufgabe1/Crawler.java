@@ -15,6 +15,7 @@ import java.util.regex.Pattern;
  */
 
 public class Crawler {
+	private static final int CRAWL_UNTIL = 10;
 
 	private final static Pattern BINARY_FILES_EXTENSIONS = Pattern
 			.compile(".*(\\.(css|js|bmp|gif|jpe?g"
@@ -45,7 +46,7 @@ public class Crawler {
 			for (URL l : links) {
 				if ((!indexed.contains(l.toURI().toString())) && l != null
 						&& (!l.toURI().toString().contains("?"))
-						&& (!l.toURI().toString().contains("#")) && i < 10) {
+						&& (!l.toURI().toString().contains("#")) && i < Crawler.CRAWL_UNTIL) {
 					i = i + 1;
 					indexDocs(l.toURI().toString());
 				}
