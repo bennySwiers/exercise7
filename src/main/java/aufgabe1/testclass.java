@@ -16,7 +16,7 @@ public class testclass {
 	public static void main(String[] args) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		Crawler crawl = new Crawler();
-		ArrayList<String> list = crawl.service("http://mvnrepository.com/artifact/javax.servlet/servlet-api/2.5");
+		ArrayList<String> list = crawl.service("http://en.wikipedia.org/wiki/Data_mining");
 		for (String str : list){
 			System.out.println(str);
 		}

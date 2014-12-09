@@ -4,7 +4,7 @@ import org.openrdf.repository.Repository;
 
 
 public class TestMain {
-	private static final String dataPath = "C:\\Benny\\Uni\\Master\\1. Semester\\Netzbasierte Informationssysteme\\Übung\\7. Zettel\\data";
+	private static final String dataPath = "C:\\data";
 //	private static final String pathToRDFDir = "C:\\Benny\\Uni\\Master\\1. Semester\\Netzbasierte Informationssysteme\\Übung\\7. Zettel\\rdf\\file.rdf";
 //	private static final String repoId = "example-db";
 

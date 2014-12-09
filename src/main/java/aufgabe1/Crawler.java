@@ -22,10 +22,7 @@ public class Crawler {
 					+ "|wav|avi|mov|mpeg|ram|m4v|pdf"
 					+ "|rm|smil|wmv|swf|wma|zip|rar|gz))$");
 
-	/**
-	 * You should implement this function to specify whether the given url
-	 * should be crawled or not (based on your crawling logic).
-	 */
+
 	public static boolean shouldnotVisit(String url) {
 		String href = url.toLowerCase();
 
@@ -48,7 +45,7 @@ public class Crawler {
 			for (URL l : links) {
 				if ((!indexed.contains(l.toURI().toString())) && l != null
 						&& (!l.toURI().toString().contains("?"))
-						&& (!l.toURI().toString().contains("#")) && i < 50) {
+						&& (!l.toURI().toString().contains("#")) && i < 150) {
 					i = i + 1;
 					indexDocs(l.toURI().toString());
 				}

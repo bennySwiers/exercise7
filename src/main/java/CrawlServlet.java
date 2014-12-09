@@ -18,7 +18,7 @@ public class CrawlServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		Crawler crawl = new Crawler();
-		ArrayList<String> test = crawl.service("http://mvnrepository.com/artifact/javax.servlet/servlet-api/2.5");
+		ArrayList<String> test = crawl.service("http://en.wikipedia.org/wiki/Data_mining");
         StringBuilder JSON = new StringBuilder();
 
         JSON.append("{\n");
@@ -27,7 +27,7 @@ public class CrawlServlet extends HttpServlet {
 
         for(String s : test){
             JSON.append("\t {\n");
-            JSON.append("\t\t \"name\":\"cluster " + s + "\",\n");
+            JSON.append("\t\t \"name\":\"" + s + "\",\n");
             JSON.append("\t\t \"children\":[\n");
             JSON.append("\t\t\t {\"name\":\"" + s +"\"}\n");
 
