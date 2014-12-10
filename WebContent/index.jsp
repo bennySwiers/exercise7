@@ -39,10 +39,14 @@
                     left: 25 // Left position relative to parent in px
                 };
                 var target = document.getElementById('foo');
+                
             $('.tooltip').tooltipster();
             $('#crawlData').click(function () {
+            	var text = $('#localdir').val(); // document.getElementById('localdir');
+                $.post('CrawlServlet', {localdir:text} );
+            	
                 var spinner = new Spinner(opts).spin(target);
-                $.getJSON('CrawlServlet', function(data) {
+                $.getJSON('CrawlServlet', function(data) {	
                     console.log(data);
                     for (var i = 0; i < data.children.length; i++){
                         $('#crawledSites').append(data.children[i].name + "<br>");
@@ -174,12 +178,13 @@
         <li><a href="#tabs-3">Other stuff</a></li>
     </ul>
     <div id="tabs-1">
-        <form name="crawlAndQuery">
-<!-- 
+        <form name="crawlAndQuery" action="CrawlServlet" method="get">
             <p>
-                <input name="query" disabled= "true" placeholder="e.g. value1 value2 value3" size="44"/> Query
+                <input id="localdir" placeholder="eg /home/user/dir" size="44"/> 
+                <label>Local Repo Dir</label>
             </p>
 
+<!-- 
             <p>
                 <input name="site" disabled= "true" placeholder="http://www.example.org" size="44"/> Seite
             </p>
@@ -188,7 +193,7 @@
             <br>
 
             <p>
-                <button type="button" id="crawlData">Drück mich, um zu Crawlen</button>
+                <button type="button" id="crawlData">Crawl</button>
             </p>
             <p>
 
