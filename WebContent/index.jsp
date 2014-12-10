@@ -45,10 +45,10 @@
                 $.getJSON('CrawlServlet', function(data) {
                     console.log(data);
                     for (var i = 0; i < data.children.length; i++){
-                        $('#crawledSites').append(data.children[i].name + "<br>");                        ;
+                        $('#crawledSites').append(data.children[i].name + "<br>");
                     }
                     fillTree(data);
-                    spinner.stop()
+                    spinner.stop();
                 }).fail(function( jqxhr, textStatus, error ) {
                             var err = textStatus + ', ' + error;
                             console.log("Request Failed: " + err);
@@ -148,6 +148,19 @@
             background-image: linear-gradient(to bottom, #3cb0fd, #3498db);
             text-decoration: none;
         }
+        
+        div.tooltip {   
+		  position: absolute;           
+		  text-align: center;           
+		  width: 300px;                  
+		  height: 50px;                 
+		  padding: 2px;             
+		  font: 12px sans-serif;        
+		  background: lightsteelblue;   
+		  border: 0px;      
+		  border-radius: 8px;           
+		  pointer-events: none;         
+		}
 
     </style>
 
@@ -162,19 +175,20 @@
     </ul>
     <div id="tabs-1">
         <form name="crawlAndQuery">
-
+<!-- 
             <p>
-                <input name="query" placeholder="e.g. value1 value2 value3" size="44"/> Query
+                <input name="query" disabled= "true" placeholder="e.g. value1 value2 value3" size="44"/> Query
             </p>
 
             <p>
-                <input name="site" placeholder="http://www.example.org" size="44"/> Seite
+                <input name="site" disabled= "true" placeholder="http://www.example.org" size="44"/> Seite
             </p>
+ -->
 
             <br>
 
             <p>
-                <button type="button" id="crawlData">Crawl</button>
+                <button type="button" id="crawlData">Drück mich, um zu Crawlen</button>
             </p>
             <p>
 
@@ -228,6 +242,10 @@
                     .attr("class", "link")
                     .attr("d", diagonal);
 
+            var div = d3.select("body").append("div")   // für Tooltip
+            .attr("class", "tooltip")               
+            .style("opacity", 0);
+            
             var node = svg.selectAll(".node")
                     .data(nodes)
                     .enter().append("g")
@@ -235,6 +253,19 @@
                     .attr("transform", function (d) {
                         return "rotate(" + (d.x - 90) + ")translate(" + d.y + ")";
                     })
+             .on("mouseover", function(d) {      
+            div.transition()        
+                .duration(200)      
+                .style("opacity", .9);      
+            div .html( d.name + "<br/>")  
+                .style("left", (d3.event.pageX) + "px")     
+                .style("top", (d3.event.pageY - 28) + "px");    
+            })                  
+        .on("mouseout", function(d) {       
+            div.transition()        
+                .duration(500)      
+                .style("opacity", 0);   
+        });
 
             node.append("circle")
                     .attr("r", 4.5);

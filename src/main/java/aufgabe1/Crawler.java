@@ -15,7 +15,7 @@ import java.util.regex.Pattern;
  */
 
 public class Crawler {
-	private static final int CRAWL_UNTIL = 10;
+	private static final int CRAWL_UNTIL = 150;
 
 	private final static Pattern BINARY_FILES_EXTENSIONS = Pattern
 			.compile(".*(\\.(css|js|bmp|gif|jpe?g"
